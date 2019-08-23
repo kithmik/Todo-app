@@ -1,4 +1,16 @@
+// import { Component } from '@angular/core';
+
+// @Component({
+//   selector: 'app-root',
+//   templateUrl: './app.component.html',
+//   styleUrls: ['./app.component.scss']
+// })
+// export class AppComponent {
+//   title = 'show-data';
+// }
 import { Component } from '@angular/core';
+
+import { CarModel } from './car-model';
 
 @Component({
   selector: 'app-root',
@@ -6,39 +18,30 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  todoArray=[];
-  todo;
-  title="todo-app";
-  // todoForm: new FormGroup()
+cars = [];
 
+i = 0;
 
-   addTodo(value){
-     
-    if(value!==""){
-     this.todoArray.push(value)
-    //console.log(this.todos) 
-  }else{
-    alert('Field required **')
-  }
-    
+  carModel = new CarModel(this.i, '', '', '', false);
+
+  submitted = false;
+
+  onSubmit(){
+    this.submitted = true;
   }
 
-  /*delete item*/
-  deleteItem(todo){
-  	for(let i=0 ;i<= this.todoArray.length ;i++){
-  		if(todo== this.todoArray[i]){
-        this.todoArray.splice(i,1);
-  		}
-  	}
+  saveCar(){
+    this.cars.push(this.carModel);
+    this.i += 1;
+    this.carModel = new CarModel(this.i, '', '', '', false);
   }
 
-  todoSubmit(value:any){
-    if(value!==""){
-   this.todoArray.push(value.todo)
-    //this.todoForm.reset()
-   }else{
-     alert('Field required **')
-   }
-  }
+
+
+// saveClaim(value){
+//   this.carsubmit.push(value)
 
 }
+  
+    
+
