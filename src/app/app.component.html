@@ -1,33 +1,60 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-  <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
-</div>
-
-<div class="container">
-<form #todoForm (submit)="todoSubmit(todoForm.value);" >
-
-    <div class="form-group">
-      <h1 class="text-center ">Todo App</h1>
-      
-        <div class="input-group-prepend">
-
-          <input type="text" #todo class="form-control" placeholder="Add Todo" name="todo" ngModel>
-          <span class="input-group-text add-btn" (click)="addTodo(todo.value)">
-            <i class="material-icons">add</i>
-          </span>
-          <br>
-          <br>
-          <div class="data"> 
-            <ul class="list-unstyled">
-              <li *ngFor="let todo of todoArray">{{todo}} <i (click)="deleteItem(todo)" class="material-icons">delete</i></li>
-            </ul>
-          </div>
-        </div>
-      
+<form>
+  <div class="form-group">
+  <label>Name</label>
+  <input  name="name" [(ngModel)]="carModel.name" required>
   </div>
-</form>
+  <br />
+
+  <div class="form-group">
+   <label>Model</label>
+  <input name="model" [(ngModel)]="carModel.model" required>
+   </div> 
+ 
+   <br />
+   <div class="form-group">
+    <label>Number</label>
+   <input name="number" [(ngModel)]="carModel.number" required>
+  
+  </div> 
+
+  <br />
+  <div class="form-group">
+
+  <label><input type="radio" name="hasSunroof" [(ngModel)]="carModel.hasSunroof" [value]="true">Has sunroof</label>
+  <label><input type="radio" name="hasSunroof" [(ngModel)]="carModel.hasSunroof" [value]="false">No sunroof</label>
 </div>
-<router-outlet></router-outlet>
+  
+  
+  <br />
+  <button type="button" (click)="saveCar()">Save</button>
+  <!-- <input  type="submit" value="Save" ng-click="saveCar()"> -->
+</form>  
+
+
+<table class="table">
+
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Model</th>
+            <th>Number</th>
+            <th>Has Sunroof?</th>
+        </tr>
+    </thead>
+
+   
+    <tr *ngFor="let car of cars"> 
+        <td>{{ car.id }}</td>
+        <td>{{ car.name }}</td>
+        <td>{{ car.model }}</td>
+        <td>{{ car.number }}</td>
+
+        <td>
+            <span *ngIf="car.hasSunroof == true">Yes</span>
+            <span *ngIf="car.hasSunroof == false">No</span>
+        </td>
+       
+    </tr>
+</table>  
+
